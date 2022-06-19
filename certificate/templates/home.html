@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block main %}
+<!-- ======= Counts Section ======= -->
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-content-center align-items-center">
+    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+      <h1 class="text-right">رؤيتنا</h1>
+      <h2 class="text-right">التميّز في التعليم الجامعي والبحث العلمي على المستويينِ الوطني والإقليمي، بما يضمن جودته, ويُسهم في خدمة وإعلاء الدور الحضاري للأمّة</h2>
+      {% if user.is_authenticated  %}
+      <a href="{% url 'logout' %}" class="btn-get-started">تسجيل الخروج</a>
+      {% else %}
+      <a href="{% url 'login' %}" class="btn-get-started">تسجيل الدخول</a>
+      {% endif %}
+      
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row" style="direction:rtl">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+            <img src="{% static 'img/about.jpg' %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" >
+            <h3 class="text-right">نبذة تعريفية</h3>
+            <p class="text-right">
+              أُنشِئت جامعة الريان في العام الجامعي 2009م – 2010م بموجب القانون رقم (13) لسنة 2005م بشأن الجامعات والمعاهد العليا والكليات الأهلية ، بقرار وزاري رقم 192 لعام 2010م تحت مسمى ( كلية الريان للعلوم الإنسانية والتطبيقية ) واستمرت في ممارسة نشاطها كلية جامعية حتى صدر القرار الوزاري رقم (509) لسنة 2014م بتحويلها إلى جامعة تحت مسمى (جامعة الريان ) . وتعددت كلياتها وبرامجها الأكادمية وازدادت من (4) برامج أكاديمية للبكالوريوس عند التأسيس إلى (16) برنامجاً أكاديمياً للبكالوريوس ، و(7) برامج للماجستير و(9) برامج للدبلوم العالي
+            </p>
+            
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts section-bg">
+      <div class="container">
+
+        <div class="row counters">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="1232" data-purecounter-duration="1" class="purecounter"></span>
+            <p>طالب</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="1" class="purecounter"></span>
+            <p>كورس</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="42" data-purecounter-duration="1" class="purecounter"></span>
+            <p>أحداث</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+            <p>أستاذ</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+  </main><!-- End #main -->
+{% endblock main %}

@@ -1,0 +1,44 @@
+#header{
+    background: #17b64c;
+}
+#head{
+    background: white;
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+}
+#head img{
+    padding: 11px;
+    width: 47px;
+}
+.module h2, .module caption, .inline-group h2{
+    background:#17b64c;
+}
+div.breadcrumbs{
+    background: #d5f2d470;
+    color:#000
+}
+div.breadcrumbs a{
+    color:#002a3c;
+}
+input[type="submit"]:hover{
+    background: #002a3c;
+}
+input[type="submit"]{
+    background: #002a3ce1;
+}
+input[type="submit"].default{
+    background: #002a3ce1;
+}
+input[type="submit"].default:hover{
+    background: #002a3c;
+}
+a:link, a:visited{
+    color: #002a3cd0;
+}
+a:hover{
+    color: #002a3c;
+}
+*{
+    font-family:'Cairo' !important;
+}

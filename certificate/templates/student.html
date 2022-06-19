@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block main %}
+
+   <div class="container my-3" dir="rtl">
+      <div class="row">
+         <div class="col-8 my-4">
+            <div class="col-md-8 text-right">الأسم: {{student.name}}</div>
+            <div class="col-md-4 text-right">رقم القيد: {{student.st_id}}</div>
+            <div class="col-md-4 text-right"> التخصص: {{student.major}}</div>
+         </div>
+         <div class="col-4">
+            <img src="{% if student.image.url %}{{student.image.url}}{% endif %}" width="150px" alt="image">
+         </div>
+      </div>
+      <div class="my-4">
+         <form method="post" action="{% url 'main' %}">
+            {% csrf_token %}
+            <div class="row">
+               
+               <div class="col-8">
+                  <select name="term" class="form-control" style="-webkit-appearance: menulist;">
+                     <option value=""> اختر الفصل</option>
+                     {% for term in terms %}
+                     <option value="{{term.pk}}" {% if term.pk == cterm.pk %}selected{% endif %}>{{selected_id}} {{term}}</option>
+                     {% endfor %}
+                  </select>
+               </div>
+               <div class="col-4">
+                  <input type="submit" class="btn btn-success w-100" value="عرض">
+               </div>
+            </div>
+         </form>
+      </div>
+         <section style="padding-top:5px">
+            <p class="text-center">العام الجامعي {{cterm.year}}</p>
+                        <table class="table">
+                          <thead class="thead-primary">
+                            <tr>
+                              <th>#</th>
+                              <th>المادة</th>
+                              <th>التقدير</th>
+                              <th>الملاحظات</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              {% for mark in marks %}
+                              <tr>
+                                 <th scope="row">{{forloop.counter}}</th>
+                                 <td>{{mark.subject}}</td>
+                                 <td>{{mark.degree}}</td>
+                                 <td>{{mark.note}}</td>
+                              </tr>
+                              {% endfor %}
+                          </tbody>
+                        </table>
+         </section>
+         <a href="{% url 'pdf' term_id %}" target="_blank" class="btn btn-success">تنزيل</a>
+   </div>
+{%endblock main%}

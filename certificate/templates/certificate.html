@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate</title>
+    <style>
+        @page{
+            size: 'A4';
+            margin:1.5cm 1.5cm 1.5cm 1.5cm;
+        }
+        td{
+            padding-top:20px
+        }
+        td{
+            text-align: center
+        }
+        *{
+            font-family:'KacstOne';
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            padding:0;
+          }
+    </style>
+</head>
+<body>
+    <div style="position:absolute;top:170px;left:80px;">
+        <img src="{{university.university_stamp.url}}" style="width:100px;">
+     </div>
+     <div style="position:absolute;top:600px;left:80px;">
+        <img src="{{university.university_stamp.url}}" style="width:100px;">
+     </div>
+     <div style="position:absolute;top:600px;right:100px;">
+        <img src="{{university.register_stamp.url}}" style="width:100px;">
+     </div>
+    <div style="display:flex;justify-content:space-between;margin:0;padding:0;">
+       <img src="{% static 'img/head.png' %}" alt="logo" style="width:42rem"> 
+    </div>
+    <div style="color:#000;overflow:hidden;margin:0;padding:0;"><b>________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</b></div> 
+    <div style="display:flex;justify-content:space-between">
+      
+      <div>
+        <img src="{% if student.image.url %}{{student.image.url}}{% endif %}" style="width:150px" alt="img">
+      </div>
+      <div style="padding-top:110px;text-align:center;font-size:18px;">
+        <p style="margin:0;padding:0;"><b><u>سجل درجات للفصل الدراسي {{term.name}} </u></b></p>
+        <p style="margin:0;padding:0;"><b><u>للمستوى {{term.level}}</u></b></p>
+      </div>
+      <div style="">التاريخ: {% now 'd-m-Y' %}</div>
+      
+    </div>
+<div style="font-size:16px">
+    <div style="display:flex;justify-content:space-between">
+        <div style="width:33%;direction:rtl;text-align:right;">رقم القيد:{{student.st_id}}</div>
+        <div style="width:20%;direction:rtl;text-align:right;">الجنس: {{student.gender}}</div>
+        <div style="width:46%;direction:rtl;text-align:right;">اسم الطالب رباعيا: {{student.name}}</div>
+    </div>
+    <div style="display:flex;justify-content:space-between">
+        <div style="width:33%;direction:rtl;text-align:right;">تاريخ الميلاد:{{student.birthdate|date:'d-m-Y'}}</div>
+        <div style="width:33%;direction:rtl;text-align:right;">مكان الميلاد: {{student.birthplace}}</div>
+        <div style="width:33%;direction:rtl;text-align:right;">الجنسية:{{student.national}}</div>
+    </div>
+    <div style="display:flex;justify-content:space-between">
+        <div style="width:33%;direction:rtl;text-align:right;">التخصص: {{student.major}}</div>
+        <div style="width:33%;direction:rtl;text-align:right;">القسم: {{student.major.part}}</div>
+        <div style="width:33%;direction:rtl;text-align:right;">الكلية: {{student.major.part.collage}}</div>
+    </div>
+    <div style="display:flex;justify-content:space-between">
+        <div style="width:33%;direction:rtl;text-align:right;">حالة الطالب: {{student.status}}</div>
+        <div style="width:33%;direction:rtl;text-align:right;">المستوى الحالي: {{student.current_level}}</div>
+        <div style="width:33%;direction:rtl;text-align:right;">عام الالتحاق: {{student.start_date}}</div>
+    </div>
+</div>
+<div style="text-align:center;font-size:14px">
+    <p><b><u>العام الجامعي {{term.year}}</u></b></p>
+</div>
+    <div>
+        <table style="width:100%;direction:rtl;">
+           <tr>
+            <td rowspan="2">م</td>
+            <td rowspan="2">المقرر الدراسي</td>
+            <td colspan="2">الفصل الدراسي {{ter.name}} لعام {{term.year}}</td>
+            
+           </tr>
+           <tr>
+            <td>التقدير</td>
+            <td>الملاحظات</td>
+           </tr>
+            {% for mark in marks %}
+            <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{mark.subject}}</td>
+            <td>{{mark.degree}}</td>
+            <td>{{mark.note}}</td>
+        </tr>
+            {% endfor %}
+           <tr>
+            <td colspan="4">
+            <div style="display:flex;justify-content:space-between">
+            <div style="width:33%;text-align:center;">مجموع درجات الفصل: {{total|floatformat:0}}</div>
+            <div style="width:33%;text-align:center;">المعدل:{{grade|floatformat:2}}%</div>
+            <div style="width:33%;text-align:center;">التقدير: {{degree}}//</div>
+            </div>
+            </td>
+           </tr>
+        </table>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:20px;">
+        <div style="width:33%;text-align:center;">عميد الكلية</div>
+        <div style="width:33%;text-align:center;">عميد شؤون الطلاب</div>
+        <div style="width:33%;text-align:center;">المخلص</div>
+    </div>
+    <div style="position:absolute;bottom:0;text-align:center;width:100%;font-size:14px;">
+        <div style="color:#000;overflow:hidden;margin:0;padding:0;"><b>________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</b></div> 
+        <p style="text-align:center;">المكلا-فوة-امام مركز جامعة حضرموت للمؤتمرات والمعارض -هاتف:(362940 5 00967) فاكس:(362942 5 00967)</p>
+        <p>ص.ب:(30605) البريد الألكتروني:alrayan@alrayan.com الموقع على الانترنت: www.alrayan.edu.ye</p>
+    </div>
+
+</body>
+</html>

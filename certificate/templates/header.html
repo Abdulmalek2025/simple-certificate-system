@@ -1,0 +1,29 @@
+  <!-- ======= Header ======= -->
+  {% load static %}
+  {% load i18n %}
+  <header id="header" class="">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}"></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          {% if user.is_authenticated  %}
+          {% if user.is_superuser %}
+          <li><a href="{% url 'admin:index' %}">لوحة التحكم</a></li>
+          <li><a href="{% url 'students' %}">الطلبة</a></li>
+          {% else %}
+          {% endif %}
+          <li><a href="{% url 'logout' %}">تسجيل الخروج</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">تسجيل الدخول</a></li>
+          {% endif %}
+          
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
